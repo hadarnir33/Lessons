@@ -12,7 +12,7 @@ namespace Lessons
         static void Main(string[] args)
         {
             Stack<int> S = generateStackByInput();
-            Console.WriteLine(S.ToString());
+            Console.WriteLine(S);
             Console.WriteLine(lastAndRemove(S));
             Console.WriteLine(S);
         }
