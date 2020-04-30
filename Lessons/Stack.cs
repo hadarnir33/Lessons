@@ -14,13 +14,15 @@ namespace Lessons
         {
             this.head = null;
         }
+
+        /* הפעולה מכניסה את הערך x לראש המחסנית הנוכחית **/
         public void Push(T x)
         {
             Node<T> temp = new Node<T>(x);
             temp.SetNext(head);
             head = temp;
         }
-        /* הפעולה מכניסה את הערך x לראש המחסנית הנוכחית **/
+        
         /* הפעולה מוציאה ומחזירה את הערך הנמצא  בראש המחסנית הנוכחית **/
         public T Pop()
         {
@@ -29,20 +31,17 @@ namespace Lessons
             return x;
         }
 
-
         /* הפעולה מחזירה את הערך הנמצא  בראש המחסנית הנוכחית **/
         public T Top()
         {
             return head.GetInfo();
         }
 
-
         /* הפעולה מחזירה 'אמת' אם המחסנית הנוכחית ריקה, ומחזירה 'שקר' אחרת **/
         public bool IsEmpty()
         {
             return head == null;
         }
-
 
         /* הפעולה מחזירה מחרוזת המתארת את המחסנית הנוכחית */
         public override string ToString()
