@@ -13,6 +13,7 @@ namespace Lessons
         {
             Stack<int> S = generateStackByInput();
             Console.WriteLine(S.ToString());
+            Console.WriteLine(lastAndRemove(S)); 
         }
 
         // This function creates a stack according to the user inputs
@@ -20,14 +21,25 @@ namespace Lessons
         {
             Stack<int> S = new Stack<int>();
             string input;
-            Console.WriteLine("Enter numbers for the stack, enter end to finish");
+            Console.WriteLine("Enter numbers for the stack, enter -1 to finish");
             input = Console.ReadLine();
-            while(input != "end")
+            while(input != "-1")
             {
                 S.Push(int.Parse(input));
                 input = Console.ReadLine();
             }
             return S;
+        }
+
+        // Exam 2018: 4.a, this function returns the number in the bottom of the stack.
+        public static int lastAndRemove(Stack<int> S)
+        {
+            int bottomOfStack = 0;
+            while (!S.IsEmpty())
+            {
+                bottomOfStack = S.Pop();
+            }
+            return bottomOfStack;
         }
     }
 }
