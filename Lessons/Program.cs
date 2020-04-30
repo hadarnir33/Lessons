@@ -15,8 +15,6 @@ namespace Lessons
             Console.WriteLine(s);      
             Stack<TwoItems> stkTwoItems= stackTwoItems(s);
             Console.WriteLine(stkTwoItems);
-
-            
         }
 
         // This function creates a stack according to the user inputs
