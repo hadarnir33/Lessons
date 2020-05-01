@@ -14,6 +14,8 @@ namespace Lessons
             BinTreeNode<int> t = buildTree();
             BinTreeNode<int> t2 = buildDebugTree();
             Console.WriteLine(TreeLessThanTree(t2, t));
+            Node<int> node = Check(t, t2);
+            PrintChain(node);
         }
 
         // This function creates a three level tree with hardcoded values.
@@ -72,6 +74,60 @@ namespace Lessons
                     return TreeLessThanTree(t1.GetRight(), t2) && TreeLessThanTree(t1.GetLeft(), t2);
                 else
                     return false;
+            }
+        }
+
+        // Exam 2017 6.a, this function checks wheter x value exists in one of the nodes in the tree
+        public static bool exist(BinTreeNode<int> t, int x)
+        {
+            if (t == null)
+                return false;
+            else
+            {
+                if (t.GetInfo() == x)
+                    return true;
+                return exist(t.GetRight(), x) || exist(t.GetLeft(), x);
+            }
+        }
+
+        // Exam 2017 6.b, this function gets two trees and return a list with all the values exists on the first tree but not on the second tree
+        public static Node<int> Check(BinTreeNode<int> t1, BinTreeNode<int> t2)
+        {
+            Node<int> first = new Node<int>(-1);
+            first = Check(t1, t2, first);
+            return first.GetNext();
+        }
+
+
+        // Exam 2017 6.b, this function inserts to a list all the values that exists on the first tree but not on the other
+        public static Node<int> Check(BinTreeNode<int> t1, BinTreeNode<int> t2, Node<int> list)
+        {
+            if (t1 == null)
+                return null;
+            else
+            {
+                if (!exist(t2, t1.GetInfo()))
+                {
+                    Node<int> nodeToInsert = new Node<int>(t1.GetInfo());
+                    list.SetNext(nodeToInsert);
+                }
+                Check(t1.GetRight(), t2, list.GetNext());
+                Check(t1.GetLeft(), t2, list.GetNext());
+                return list;
+            }
+        }
+
+        public static void PrintChain<T>(Node<T> chain)
+        {
+            Console.Write("[");
+            while (chain != null)
+            {
+                Console.Write(chain.GetInfo().ToString());
+                if (chain.HasNext())
+                    Console.Write(", ");
+                else
+                    Console.WriteLine("]");
+                chain = chain.GetNext();
             }
         }
     }
