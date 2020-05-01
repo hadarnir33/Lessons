@@ -25,9 +25,9 @@ namespace Lessons
             BinTreeNode<int> t2 = new BinTreeNode<int>(2);
             BinTreeNode<int> t3 = new BinTreeNode<int>(3);
             BinTreeNode<int> t4 = new BinTreeNode<int>(4);
-            BinTreeNode<int> t5 = new BinTreeNode<int>(5);
+            BinTreeNode<int> t5 = new BinTreeNode<int>(0);
             BinTreeNode<int> t6 = new BinTreeNode<int>(6);
-            BinTreeNode<int> t7 = new BinTreeNode<int>(7);
+            BinTreeNode<int> t7 = new BinTreeNode<int>(0);
             t1.SetRight(t2);
             t1.SetLeft(t3);
             t2.SetRight(t4);
@@ -111,11 +111,13 @@ namespace Lessons
                     Node<int> nodeToInsert = new Node<int>(t1.GetInfo());
                     list.SetNext(nodeToInsert);
                 }
-                if(list.HasNext())
-                    Check(t1.GetRight(), t2, list.GetNext());
-                else
-                    Check(t1.GetRight(), t2, list);
                 Node<int> temp = list;
+                while (temp.GetNext() != null)
+                {
+                    temp = temp.GetNext();
+                }
+                Check(t1.GetRight(), t2, temp);
+                temp = list;
                 while (temp.GetNext() != null)
                 {
                     temp = temp.GetNext();
