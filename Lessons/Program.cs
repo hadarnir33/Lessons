@@ -111,8 +111,16 @@ namespace Lessons
                     Node<int> nodeToInsert = new Node<int>(t1.GetInfo());
                     list.SetNext(nodeToInsert);
                 }
-                Check(t1.GetRight(), t2, list.GetNext());
-                Check(t1.GetLeft(), t2, list.GetNext());
+                if(list.HasNext())
+                    Check(t1.GetRight(), t2, list.GetNext());
+                else
+                    Check(t1.GetRight(), t2, list);
+                Node<int> temp = list;
+                while (temp.GetNext() != null)
+                {
+                    temp = temp.GetNext();
+                }
+                Check(t1.GetLeft(), t2, temp);
                 return list;
             }
         }
