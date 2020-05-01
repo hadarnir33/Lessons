@@ -15,7 +15,7 @@ namespace Lessons
             BinTreeNode<int> t2 = buildDebugTree();
             Console.WriteLine(TreeLessThanTree(t2, t));
             Node<int> node = Check(t, t2);
-            PrintChain(node);
+            Console.WriteLine(node);
         }
 
         // This function creates a three level tree with hardcoded values.
@@ -123,20 +123,6 @@ namespace Lessons
                 }
                 Check(t1.GetLeft(), t2, temp);
                 return list;
-            }
-        }
-
-        public static void PrintChain<T>(Node<T> chain)
-        {
-            Console.Write("[");
-            while (chain != null)
-            {
-                Console.Write(chain.GetInfo().ToString());
-                if (chain.HasNext())
-                    Console.Write(", ");
-                else
-                    Console.WriteLine("]");
-                chain = chain.GetNext();
             }
         }
     }
