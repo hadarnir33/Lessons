@@ -25,9 +25,9 @@ namespace Lessons
             BinTreeNode<int> t2 = new BinTreeNode<int>(2);
             BinTreeNode<int> t3 = new BinTreeNode<int>(3);
             BinTreeNode<int> t4 = new BinTreeNode<int>(4);
-            BinTreeNode<int> t5 = new BinTreeNode<int>(0);
+            BinTreeNode<int> t5 = new BinTreeNode<int>(5);
             BinTreeNode<int> t6 = new BinTreeNode<int>(6);
-            BinTreeNode<int> t7 = new BinTreeNode<int>(0);
+            BinTreeNode<int> t7 = new BinTreeNode<int>(7);
             t1.SetRight(t2);
             t1.SetLeft(t3);
             t2.SetRight(t4);
@@ -97,7 +97,6 @@ namespace Lessons
             first = Check(t1, t2, first);
             return first.GetNext();
         }
-
 
         // Exam 2017 6.b, this function inserts to a list all the values that exists on the first tree but not on the other
         public static Node<int> Check(BinTreeNode<int> t1, BinTreeNode<int> t2, Node<int> list)
