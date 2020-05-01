@@ -57,5 +57,21 @@ namespace Lessons
             bool flag = this.next != null ? true : false;
             return flag;
         }
+
+        /* הפעולה מחזירה מחרוזת המתארת את השרשרת הנוכחית הנוכחי */
+        public override string ToString()
+        {
+            Node<T> node = this;
+            string s = "[";
+            while (node != null)
+            {
+                s = s + node.GetInfo().ToString();
+                if (node.GetNext() != null)
+                    s = s + ",";
+                node = node.GetNext();
+            }
+            s = s + "]";
+            return s;
+        }
     }
 }
