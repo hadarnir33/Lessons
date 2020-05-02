@@ -11,14 +11,14 @@ namespace Lessons
     {
         static void Main(string[] args)
         {
-            Stack<int> s = generateStackByInput();
-            Console.WriteLine(s);      
-            Stack<TwoItems> stkTwoItems= stackTwoItems(s);
-            Console.WriteLine(stkTwoItems);
+            Stack<int> s = GenerateStackByInput();
+            Console.WriteLine(s);
+            DuplicatesItems(s);
+            Console.WriteLine(s);
         }
 
-        // This function creates a stack according to the user inputs
-        public static Stack<int> generateStackByInput()
+        // This function creates a stack according to the user inputs.
+        public static Stack<int> GenerateStackByInput()
         {
             Stack<int> s = new Stack<int>();
             string input;
@@ -33,7 +33,7 @@ namespace Lessons
         }
 
         // Exam 2018: 4.a, this function returns the number in the bottom of the stack and remove it from the stack.
-        public static int lastAndRemove(Stack<int> s)
+        public static int LastAndRemove(Stack<int> s)
         {
             Stack<int> temp = new Stack<int>();
             int bottomOfStack = 0;
@@ -49,7 +49,7 @@ namespace Lessons
         }
 
         // Exam 2018: 4.b, this function creates a TwoItems stack from a given stack with even length.
-        public static Stack<TwoItems> stackTwoItems(Stack<int> stk1)
+        public static Stack<TwoItems> StackTwoItems(Stack<int> stk1)
         {
             Stack < TwoItems > stkTwoItems= new Stack<TwoItems>();
             TwoItems item;
@@ -57,11 +57,33 @@ namespace Lessons
             while (!stk1.IsEmpty())
             {
                 firstNumber = stk1.Pop();
-                secondNumber = lastAndRemove(stk1);
+                secondNumber = LastAndRemove(stk1);
                 item = new TwoItems(firstNumber, secondNumber);
                 stkTwoItems.Push(item);
             }
             return stkTwoItems;
+        }
+
+        // Exam 2008: 4.a, this function duplicates an item in the stack if it is a changing direction item.
+        public static void DuplicatesItems(Stack<int> stk1)
+        {
+            Stack<int> tempStk = new Stack<int>();
+            int bottom, middle, top;
+            bottom = stk1.Pop();
+            tempStk.Push(bottom);
+            middle = stk1.Pop();
+            tempStk.Push(middle);
+            while (!stk1.IsEmpty())
+            {
+                top = stk1.Pop();
+                if (middle > bottom && middle > top || middle < bottom && middle < top)
+                    tempStk.Push(middle);
+                tempStk.Push(top);
+                bottom = middle;
+                middle = top;
+            }
+            while (!tempStk.IsEmpty())
+                stk1.Push(tempStk.Pop());
         }
     }
 }
