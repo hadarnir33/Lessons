@@ -12,10 +12,8 @@ namespace Lessons
         static void Main(string[] args)
         {
             BinTreeNode<int> t = buildTree();
-            BinTreeNode<int> t2 = buildDebugTree();
-            Console.WriteLine(TreeLessThanTree(t2, t));
-            Node<int> node = Check(t, t2);
-            Console.WriteLine(node);
+            Console.WriteLine(UpPath(t));
+            Console.WriteLine(t);
         }
 
         // This function creates a three level tree with hardcoded values.
@@ -123,6 +121,24 @@ namespace Lessons
                 }
                 Check(t1.GetLeft(), t2, temp);
                 return list;
+            }
+        }
+
+        // Exam 2016 6, this function checks wheter there is a path from the root to one of the leafes that is sorted in ascending order
+        public static bool UpPath(BinTreeNode<int> tr)
+        {
+            bool flagRight = false;
+            bool flagLeft = false;
+            if (tr.GetLeft() == null || tr.GetRight() == null) { 
+                return true;
+                }
+            else
+            {
+                if (tr.GetRight() != null && tr.GetInfo() < tr.GetRight().GetInfo())
+                    flagRight = UpPath(tr.GetRight());
+                if (tr.GetLeft() != null && tr.GetInfo() < tr.GetLeft().GetInfo())
+                    flagLeft = UpPath(tr.GetLeft());
+                return flagRight || flagLeft;
             }
         }
     }
