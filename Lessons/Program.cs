@@ -11,9 +11,9 @@ namespace Lessons
     {
         static void Main(string[] args)
         {
-            BinTreeNode<int> t = buildTree();
-            Console.WriteLine(UpPath(t));
-            Console.WriteLine(t);
+            BinTreeNode<Range> rt = buildRangeTree();
+            Console.WriteLine(rt);
+            Console.WriteLine(Order(rt));
         }
 
         // This function creates a three level tree with hardcoded values.
@@ -42,6 +42,23 @@ namespace Lessons
             BinTreeNode<int> t2 = new BinTreeNode<int>(-5);
             BinTreeNode<int> t3 = new BinTreeNode<int>(0);
             BinTreeNode<int> t4 = new BinTreeNode<int>(0);
+            t1.SetRight(t2);
+            t1.SetLeft(t3);
+            t2.SetRight(t4);
+            return t1;
+        }
+
+        // This function creates an hardcoded Range tree
+        public static BinTreeNode<Range> buildRangeTree()
+        {
+            Range r1 = new Range(1, 10);
+            Range r2 = new Range(5, 10);
+            Range r3 = new Range(1, 4);
+            Range r4 = new Range(8, 10);
+            BinTreeNode<Range> t1 = new BinTreeNode<Range>(r1);
+            BinTreeNode<Range> t2 = new BinTreeNode<Range>(r2);
+            BinTreeNode<Range> t3 = new BinTreeNode<Range>(r3);
+            BinTreeNode<Range> t4 = new BinTreeNode<Range>(r4);
             t1.SetRight(t2);
             t1.SetLeft(t3);
             t2.SetRight(t4);
@@ -139,6 +156,26 @@ namespace Lessons
                 if (tr.GetLeft() != null && tr.GetInfo() < tr.GetLeft().GetInfo())
                     flagLeft = UpPath(tr.GetLeft());
                 return flagRight || flagLeft;
+            }
+        }
+
+        // Exam 2019 6, this function checks wheter the given tree is a Range tree
+        public static bool Order(BinTreeNode<Range> rt)
+        {
+            bool firstCondition = false, secondCondition = false, thirdCondition = false;
+            if (rt == null || rt.GetRight() == null && rt.GetLeft() == null)
+                return true;
+            else
+            {
+                if ((rt.GetLeft() != null && rt.GetInfo().Low == rt.GetLeft().GetInfo().Low && rt.GetInfo().High >= rt.GetLeft().GetInfo().High) || rt.GetLeft() == null)
+                    firstCondition = true;
+                if ((rt.GetRight() != null && rt.GetInfo().High == rt.GetRight().GetInfo().High && rt.GetInfo().Low <= rt.GetRight().GetInfo().Low) || rt.GetRight() == null)
+                    secondCondition = true;
+                if ((rt.GetRight() != null && rt.GetLeft() != null && rt.GetLeft().GetInfo().High < rt.GetRight().GetInfo().Low) || !(rt.GetRight() != null && rt.GetLeft() != null))
+                    thirdCondition = true;
+                if(firstCondition && secondCondition && thirdCondition)
+                    return Order(rt.GetRight()) && Order(rt.GetLeft());
+                return false;
             }
         }
     }
