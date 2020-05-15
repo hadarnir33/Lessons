@@ -68,7 +68,6 @@ namespace Lessons
             return n;
         }
 
-
         // Exam 2010 2, this function is a helper function, it return a RangeNode object inside of a Node
         public static Node<RangeNode> CreateRangeNodeInNode(int from , int to)
         {
