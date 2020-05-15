@@ -12,14 +12,14 @@ namespace Lessons
         private int to;
 
 
-        public RangeNode(int low, int high)
+        public RangeNode(int from, int to)
         {
-            this.from = low;
-            this.to = high;
+            this.from = from;
+            this.to = to;
         }
 
-        public int Low { get => from; set => from = value; }
-        public int High { get => to; set => to = value; }
+        public int From { get => from; set => from = value; }
+        public int To { get => to; set => to = value; }
 
         public override string ToString()
         {
