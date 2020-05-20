@@ -12,7 +12,9 @@ namespace Lessons
         static void Main(string[] args)
         {
             BinTreeNode<Stack<int>> st = BuildStackTree();
+            Stack<int> s = new Stack<int>();
             Console.WriteLine(st);
+            Console.WriteLine(SumStackNode(st, s));
         }
 
         // This function creates a three level tree with hardcoded values.
@@ -89,7 +91,6 @@ namespace Lessons
             }
             return s;
         }
-
 
         // Exam 2018 6, this function checks wheter all the nodes in the tree have higher values than x O(n)
         public static bool LessThanTree(BinTreeNode<int> t, int x)
@@ -206,10 +207,29 @@ namespace Lessons
         }
 
         // Exam 2012 2, this function returns a stack than contains the sum of the stack in each node of the tree
-        public static Stack<int> SumStackNode(BinTreeNode<Stack<int>> tr)
+        public static Stack<int> SumStackNode(BinTreeNode<Stack<int>> st, Stack<int> s)
         {
-            Stack<int> s = new Stack<int>();
+            if(st != null)
+            {
+                SumStackNode(st.GetLeft(), s);
+                s.Push(SumTopThreeInStack(st.GetInfo()));
+                SumStackNode(st.GetRight(), s);
+            }
             return s;
+        }
+
+        // Exam 2012 2, this function is a helper function, it sums the top 3 values in a stack
+        public static int SumTopThreeInStack(Stack<int> s)
+        {
+            int sum = 0;
+            for (int i = 0; i < 3; i++)
+            {
+                if (s.IsEmpty())
+                    break;
+                else
+                    sum += s.Pop();
+            }
+            return sum;
         }
     }
 }
