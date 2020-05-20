@@ -11,9 +11,8 @@ namespace Lessons
     {
         static void Main(string[] args)
         {
-            BinTreeNode<Range> rt = buildRangeTree();
-            Console.WriteLine(rt);
-            Console.WriteLine(Order(rt));
+            BinTreeNode<Stack<int>> st = buildStackTree();
+            Console.WriteLine(st);
         }
 
         // This function creates a three level tree with hardcoded values.
@@ -64,6 +63,33 @@ namespace Lessons
             t2.SetRight(t4);
             return t1;
         }
+
+        // This function creates an hardcoded stack tree
+        public static BinTreeNode<Stack<int>> buildStackTree()
+        {
+            BinTreeNode<Stack<int>> st1 = new BinTreeNode<Stack<int>>(buildStackFromArray(new int[] { 7, 9, 4, 8 }));
+            BinTreeNode<Stack<int>> st2 = new BinTreeNode<Stack<int>>(buildStackFromArray(new int[] { 2, 1, 8, 1 }));
+            BinTreeNode<Stack<int>> st3 = new BinTreeNode<Stack<int>>(buildStackFromArray(new int[] { 1, 3 }));
+            BinTreeNode<Stack<int>> st4 = new BinTreeNode<Stack<int>>(buildStackFromArray(new int[] { }));
+            BinTreeNode<Stack<int>> st5 = new BinTreeNode<Stack<int>>(buildStackFromArray(new int[] { 1, 4, 9, 2 }));
+            st1.SetRight(st2);
+            st2.SetLeft(st3);
+            st2.SetRight(st4);
+            st4.SetLeft(st5);
+            return st1;
+        }
+
+        // This function creates a stack from an array
+        public static Stack<int> buildStackFromArray(int[] arr)
+        {
+            Stack<int> s = new Stack<int>();
+            for (int i = 0; i < arr.Length; i++)
+            {
+                s.Push(arr[i]);
+            }
+            return s;
+        }
+
 
         // Exam 2018 6, this function checks wheter all the nodes in the tree have higher values than x O(n)
         public static bool LessThanTree(BinTreeNode<int> t, int x)
@@ -177,6 +203,13 @@ namespace Lessons
                     return Order(rt.GetRight()) && Order(rt.GetLeft());
                 return false;
             }
+        }
+
+        // Exam 2012 2, this function returns a stack than contains the sum of the stack in each node of the tree
+        public static Stack<int> SumStackNode(BinTreeNode<Stack<int>> tr)
+        {
+            Stack<int> s = new Stack<int>();
+            return s;
         }
     }
 }
