@@ -11,12 +11,12 @@ namespace Lessons
     {
         static void Main(string[] args)
         {
-            BinTreeNode<Stack<int>> st = buildStackTree();
+            BinTreeNode<Stack<int>> st = BuildStackTree();
             Console.WriteLine(st);
         }
 
         // This function creates a three level tree with hardcoded values.
-        public static BinTreeNode<int> buildTree()
+        public static BinTreeNode<int> BuildTree()
         {
             BinTreeNode<int> t1 = new BinTreeNode<int>(1);
             BinTreeNode<int> t2 = new BinTreeNode<int>(2);
@@ -35,7 +35,7 @@ namespace Lessons
         }
 
         // This function creates an hardcoded tree for debugging
-        public static BinTreeNode<int> buildDebugTree()
+        public static BinTreeNode<int> BuildDebugTree()
         {
             BinTreeNode<int> t1 = new BinTreeNode<int>(-2);
             BinTreeNode<int> t2 = new BinTreeNode<int>(-5);
@@ -48,7 +48,7 @@ namespace Lessons
         }
 
         // This function creates an hardcoded Range tree
-        public static BinTreeNode<Range> buildRangeTree()
+        public static BinTreeNode<Range> BuildRangeTree()
         {
             Range r1 = new Range(1, 10);
             Range r2 = new Range(5, 10);
@@ -65,13 +65,13 @@ namespace Lessons
         }
 
         // This function creates an hardcoded stack tree
-        public static BinTreeNode<Stack<int>> buildStackTree()
+        public static BinTreeNode<Stack<int>> BuildStackTree()
         {
-            BinTreeNode<Stack<int>> st1 = new BinTreeNode<Stack<int>>(buildStackFromArray(new int[] { 7, 9, 4, 8 }));
-            BinTreeNode<Stack<int>> st2 = new BinTreeNode<Stack<int>>(buildStackFromArray(new int[] { 2, 1, 8, 1 }));
-            BinTreeNode<Stack<int>> st3 = new BinTreeNode<Stack<int>>(buildStackFromArray(new int[] { 1, 3 }));
-            BinTreeNode<Stack<int>> st4 = new BinTreeNode<Stack<int>>(buildStackFromArray(new int[] { }));
-            BinTreeNode<Stack<int>> st5 = new BinTreeNode<Stack<int>>(buildStackFromArray(new int[] { 1, 4, 9, 2 }));
+            BinTreeNode<Stack<int>> st1 = new BinTreeNode<Stack<int>>(BuildStackFromArray(new int[] { 7, 9, 4, 8 }));
+            BinTreeNode<Stack<int>> st2 = new BinTreeNode<Stack<int>>(BuildStackFromArray(new int[] { 2, 1, 8, 1 }));
+            BinTreeNode<Stack<int>> st3 = new BinTreeNode<Stack<int>>(BuildStackFromArray(new int[] { 1, 3 }));
+            BinTreeNode<Stack<int>> st4 = new BinTreeNode<Stack<int>>(BuildStackFromArray(new int[] { }));
+            BinTreeNode<Stack<int>> st5 = new BinTreeNode<Stack<int>>(BuildStackFromArray(new int[] { 1, 4, 9, 2 }));
             st1.SetRight(st2);
             st2.SetLeft(st3);
             st2.SetRight(st4);
@@ -80,7 +80,7 @@ namespace Lessons
         }
 
         // This function creates a stack from an array
-        public static Stack<int> buildStackFromArray(int[] arr)
+        public static Stack<int> BuildStackFromArray(int[] arr)
         {
             Stack<int> s = new Stack<int>();
             for (int i = 0; i < arr.Length; i++)
