@@ -14,7 +14,7 @@ namespace Lessons
             BinTreeNode<Stack<int>> st = BuildStackTree();
             Stack<int> s = new Stack<int>();
             Console.WriteLine(st);
-            Console.WriteLine(SumStackNode(st, s));
+            Console.WriteLine(SumStacksInTreeToStack(st, s));
         }
 
         // This function creates a three level tree with hardcoded values.
@@ -206,14 +206,14 @@ namespace Lessons
             }
         }
 
-        // Exam 2012 2, this function returns a stack than contains the sum of the stack in each node of the tree
-        public static Stack<int> SumStackNode(BinTreeNode<Stack<int>> st, Stack<int> s)
+        // Exam 2012 2, this function returns a stack than contains the sum of the top three values in the stack inside each node of the tree
+        public static Stack<int> SumStacksInTreeToStack(BinTreeNode<Stack<int>> st, Stack<int> s)
         {
             if(st != null)
             {
-                SumStackNode(st.GetLeft(), s);
+                SumStacksInTreeToStack(st.GetLeft(), s);
                 s.Push(SumTopThreeInStack(st.GetInfo()));
-                SumStackNode(st.GetRight(), s);
+                SumStacksInTreeToStack(st.GetRight(), s);
             }
             return s;
         }
