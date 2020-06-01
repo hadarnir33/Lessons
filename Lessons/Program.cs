@@ -11,9 +11,8 @@ namespace Lessons
     {
         static void Main(string[] args)
         {
-            BinTreeNode<int> t1 = BuildTree();
-            BinTreeNode<int> t2 = BuildDebugTree();
-            Console.WriteLine(IsAcopy(t1, t2));
+            BinTreeNode<string> t = BuildBooleanTree();
+            Console.WriteLine(CheckBoolTree(t));
         }
 
         // This function creates a three level tree with hardcoded values.
@@ -78,6 +77,21 @@ namespace Lessons
             st2.SetRight(st4);
             st4.SetLeft(st5);
             return st1;
+        }
+
+        // This function creates an hardcoded boolean string tree
+        public static BinTreeNode<string> BuildBooleanTree()
+        {
+            BinTreeNode<string> t1 = new BinTreeNode<string>("AND");
+            BinTreeNode<string> t2 = new BinTreeNode<string>("T");
+            BinTreeNode<string> t3 = new BinTreeNode<string>("AND");
+            BinTreeNode<string> t4 = new BinTreeNode<string>("T");
+            BinTreeNode<string> t5 = new BinTreeNode<string>("F");
+            t1.SetRight(t2);
+            t1.SetLeft(t3);
+            t3.SetRight(t4);
+            t3.SetLeft(t5);
+            return t1;
         }
 
         // This function creates a stack from an array
@@ -274,6 +288,28 @@ namespace Lessons
             if (!s1.IsEmpty() || !s2.IsEmpty())
                 return false;
             return true;
+        }
+
+        // Exam 2015 1 b, this function checks the boolean value of the tree
+        public static bool CheckBoolTree(BinTreeNode<string> t)
+        {
+            bool right, left;
+            if (t.GetRight() == null && t.GetLeft() == null)
+            {
+                if (t.GetInfo() == "T")
+                    return true;
+                else
+                    return false;
+            }
+            else
+            {
+                right = CheckBoolTree(t.GetRight());
+                left = CheckBoolTree(t.GetLeft());
+                if (t.GetInfo() == "AND")
+                    return right && left;
+                else
+                    return right || left;
+            }
         }
     }
 }
