@@ -11,8 +11,7 @@ namespace Lessons
     {
         static void Main(string[] args)
         {
-            BinTreeNode<string> t = BuildBooleanTree();
-            Console.WriteLine(CheckBoolTree(t));
+            
         }
 
         // This function creates a three level tree with hardcoded values.
@@ -310,6 +309,28 @@ namespace Lessons
                 else
                     return right || left;
             }
+        }
+
+        // Exam 2014 1 b, this function checks wether the tree is a balanced tree
+        public static bool IsBalancedTree<T>(BinTreeNode<T> t)
+        {
+            if (t == null)
+                return true;
+            else
+            {
+                if (Math.Abs(HeightOfTree(t.GetRight()) - HeightOfTree(t.GetLeft())) > 1)
+                    return false;
+                return IsBalancedTree(t.GetRight()) && IsBalancedTree(t.GetLeft());
+            }
+        }
+
+        // Exam 2014 1 b, this is a helper function that return the max height of a given tree
+        public static int HeightOfTree<T>(BinTreeNode<T> t)
+        {
+            if (t == null)
+                return 0;
+            else
+                return Math.Max((HeightOfTree(t.GetRight()) + 1), (HeightOfTree(t.GetLeft()) + 1));
         }
     }
 }
