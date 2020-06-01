@@ -11,10 +11,9 @@ namespace Lessons
     {
         static void Main(string[] args)
         {
-            BinTreeNode<Stack<int>> st = BuildStackTree();
-            Stack<int> s = new Stack<int>();
-            Console.WriteLine(st);
-            Console.WriteLine(SumStacksInTreeToStack(st, s));
+            BinTreeNode<int> t1 = BuildTree();
+            BinTreeNode<int> t2 = BuildDebugTree();
+            Console.WriteLine(IsAcopy(t1, t2));
         }
 
         // This function creates a three level tree with hardcoded values.
@@ -230,6 +229,51 @@ namespace Lessons
                     sum += s.Pop();
             }
             return sum;
+        }
+
+        public static bool FindThreeSixTimes(BinTreeNode<int> bt, Stack<int> s)
+        {
+            if (s.Top() == 6)
+                return true;
+            if (bt == null)
+                return false;
+            else
+            {
+                if(bt.GetInfo() == 3)
+                {
+                    s.Push(s.Pop() + 1);
+                    return FindThreeSixTimes(bt.GetRight(), s) || FindThreeSixTimes(bt.GetLeft(), s);
+                }
+                return false;
+            } 
+        }
+
+        // Exam 2011 4 a, this function inserts to a stack the values inside the nodes of the tree
+        public static void Leaves(BinTreeNode<int> t, Stack<int> s)
+        {
+            if(t != null)
+            {
+                Leaves(t.GetRight(), s);
+                s.Push(t.GetInfo());
+                Leaves(t.GetLeft(), s);
+            }
+        }
+
+        // Exam 2011 4 b, this function checkes wether the given tress are the same
+        public static bool IsAcopy(BinTreeNode<int> t1, BinTreeNode<int> t2)
+        {
+            Stack<int> s1 = new Stack<int>();
+            Stack<int> s2 = new Stack<int>();
+            Leaves(t1, s1);
+            Leaves(t2, s2);
+            while(!s1.IsEmpty() && !s2.IsEmpty())
+            {
+                if (s1.Pop() != s2.Pop())
+                    return false;
+            }
+            if (!s1.IsEmpty() || !s2.IsEmpty())
+                return false;
+            return true;
         }
     }
 }
