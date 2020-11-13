@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinTreeNode.cs" />
+    <Compile Include="BiStone.cs" />
     <Compile Include="List.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="Program.cs" />
@@ -50,6 +51,7 @@
     <Compile Include="Queue.cs" />
     <Compile Include="RangeNode.cs" />
     <Compile Include="Stack.cs" />
+    <Compile Include="Stones.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

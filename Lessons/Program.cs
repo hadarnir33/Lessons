@@ -13,7 +13,37 @@ namespace Lessons
         {
             Node<int> n = BuildNodeChain();
             Console.WriteLine(n);
-            Console.WriteLine(CreateRangeNodeList(n));
+            Node<int> n2 = BuildNodeChain2();
+            Console.WriteLine(n2);            
+        }
+
+        // Exam 
+        public static Node<int> ListOfSquares(Node<int> L1, Node<int> L2)
+        {
+            Node<int> L1Temp = L1;
+            Node<int> L2Temp = L2;
+            Node<int> L3 = new Node<int>(-1);
+            Node<int> L3Temp = L3;
+            while (L1Temp != null)
+            {
+                while(L2Temp != null)
+                {
+                    if (Math.Pow(L1Temp.GetInfo(), 2) == L2Temp.GetInfo())
+                        L3Temp = InsertValueToChain(L1Temp.GetInfo(), L3Temp);
+                    L2Temp = L2Temp.GetNext();
+                }
+                L2Temp = L2;
+                L1Temp = L1Temp.GetNext();
+            }
+            return L3.GetNext();
+        }
+
+        // Exam
+        public static Node<int> InsertValueToChain(int value, Node<int> n)
+        {
+            Node<int> next = new Node<int>(value);
+            n.SetNext(next);
+            return n.GetNext();
         }
 
         public static Node<int> BuildNodeChain()
@@ -25,6 +55,24 @@ namespace Lessons
             Node<int> n5 = new Node<int>(19);
             Node<int> n6 = new Node<int>(20);
             Node<int> n7 = new Node<int>(100);
+            n1.SetNext(n2);
+            n2.SetNext(n3);
+            n3.SetNext(n4);
+            n4.SetNext(n5);
+            n5.SetNext(n6);
+            n6.SetNext(n7);
+            return n1;
+        }
+
+        public static Node<int> BuildNodeChain2()
+        {
+            Node<int> n1 = new Node<int>(144);
+            Node<int> n2 = new Node<int>(4);
+            Node<int> n3 = new Node<int>(5);
+            Node<int> n4 = new Node<int>(16);
+            Node<int> n5 = new Node<int>(19);
+            Node<int> n6 = new Node<int>(20);
+            Node<int> n7 = new Node<int>(25);
             n1.SetNext(n2);
             n2.SetNext(n3);
             n3.SetNext(n4);
