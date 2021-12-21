@@ -124,5 +124,29 @@ namespace Lessons
             rangeNodeInNode = new Node<RangeNode>(r);
             return rangeNodeInNode;
         }
+
+        // Exam 2021 4, this function will delete one node with the value num from the list
+        public static Node<int> Delete(int num, Node<int> lst)
+        {
+            Node<int> prev, pos;
+            if (lst.GetInfo() == num)
+            {
+                lst = lst.GetNext();
+                return lst;
+            }
+            prev = lst;
+            pos = lst.GetNext();
+            while (pos != null)
+            {
+                if (pos.GetInfo() == num)
+                {
+                    prev.SetNext(pos.GetNext());
+                    return lst;
+                }
+                pos = pos.GetNext();
+                prev = prev.GetNext();
+            }
+            return lst;
+        }
     }
 }
