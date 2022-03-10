@@ -11,11 +11,22 @@ namespace Lessons
     {
         static void Main(string[] args)
         {
-            Stack<int> s = GenerateStackByInput();
-            Console.WriteLine(s);
-            DuplicatesItems(s);
-            Console.WriteLine(s);
+            //Stack<int> s = GenerateStackByInput();
+            //Console.WriteLine(s);
+            //DuplicatesItems(s);
+            //Console.WriteLine(s);
+            string str = "1234567";
+            Console.WriteLine(str.Substring(1, str.Length - 2)); 
         }
+
+        public static int Percent(int a, int b)
+        {
+            if (a < b)
+                return a;
+            else
+                return Percent(a - b, b);
+        }
+
 
         // This function creates a stack according to the user inputs.
         public static Stack<int> GenerateStackByInput()
