@@ -14,7 +14,48 @@ namespace Lessons
             Node<int> n = BuildNodeChain();
             Console.WriteLine(n);
             Node<int> n2 = BuildNodeChain2();
-            Console.WriteLine(n2);            
+            Console.WriteLine(n2);
+        }
+
+        // Exam
+        public static Node<int> BinaryList(Node<int> zippedBinaryList, int num)
+        {
+            Node<int> binaryList = new Node<int>(-1);
+            Node<int> pos = binaryList;
+            for (int i = 1; i <= num; i++)
+            {
+                Node<int> node;
+                if (zippedBinaryList != null && zippedBinaryList.GetInfo() == i)
+                {
+                    node = new Node<int>(1);
+                    zippedBinaryList = zippedBinaryList.GetNext();
+                }
+                else
+                    node = new Node<int>(0);
+                pos.SetNext(node);
+                pos = pos.GetNext();
+            }
+            return binaryList.GetNext();
+        }
+
+        // Exam
+        public static Node<int> ZippedBinarryList(Node<int> binaryList)
+        {
+            int index = 1;
+            Node<int> zippedBinaryList = new Node<int>(-1);
+            Node<int> pos = zippedBinaryList;
+            while(binaryList != null)
+            {
+                if(binaryList.GetInfo() == 1)
+                {
+                    Node<int> indexNode = new Node<int>(index);
+                    pos.SetNext(indexNode);
+                    pos = pos.GetNext();
+                }
+                index++;
+                binaryList = binaryList.GetNext();
+            }
+            return zippedBinaryList.GetNext();
         }
 
         // Exam 
@@ -48,13 +89,13 @@ namespace Lessons
 
         public static Node<int> BuildNodeChain()
         {
-            Node<int> n1 = new Node<int>(3);
-            Node<int> n2 = new Node<int>(4);
-            Node<int> n3 = new Node<int>(5);
-            Node<int> n4 = new Node<int>(12);
-            Node<int> n5 = new Node<int>(19);
-            Node<int> n6 = new Node<int>(20);
-            Node<int> n7 = new Node<int>(100);
+            Node<int> n1 = new Node<int>(0);
+            Node<int> n2 = new Node<int>(1);
+            Node<int> n3 = new Node<int>(0);
+            Node<int> n4 = new Node<int>(0);
+            Node<int> n5 = new Node<int>(0);
+            Node<int> n6 = new Node<int>(1);
+            Node<int> n7 = new Node<int>(0);
             n1.SetNext(n2);
             n2.SetNext(n3);
             n3.SetNext(n4);
